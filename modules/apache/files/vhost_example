@@ -1,5 +1,5 @@
 <VirtualHost *:80>
-  ServerName pblv.ddev
+  ServerName servername
   DocumentRoot /var/projects/sitedir
   <Directory /var/projects/sitedir>
     Options -Indexes FollowSymLinks MultiViews
