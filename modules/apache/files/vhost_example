@@ -1,0 +1,12 @@
+<VirtualHost *:80>
+  ServerName pblv.ddev
+  DocumentRoot /var/projects/sitedir
+  <Directory /var/projects/sitedir>
+    Options -Indexes FollowSymLinks MultiViews
+    AllowOverride All
+    Order allow,deny
+    allow from all
+  </Directory>
+  #Set error_reporting to E_ALL & ~E_NOTICE
+  #php_value error_reporting 30711
+</VirtualHost>
