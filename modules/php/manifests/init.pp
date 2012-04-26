@@ -22,4 +22,10 @@ class php {
     group => 'root',
     require => Package['php5', 'php5-cli'],
   }
+
+  file { "phpinfo":
+    path => "/var/www/info/index.php",
+    ensure => present,
+    source => "puppet:///modules/php/index.php"
+    require => [Package['php5'], File['server_info_dir']],
 }

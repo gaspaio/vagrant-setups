@@ -17,6 +17,10 @@ $options['structure-tables']['common'] = array(
 
 $options['structure-tables-key'] = 'common';
 
+$options['shell-aliases']['cct'] = 'cache-clear theme-registry';
+$options['shell-aliases']['ccm'] = 'cache-clear menu';
+
+
 // Set a predetermined username and password when using site-install.
 $command_specific['site-install'] = array('account-name' => 'admin', 'account-pass' => 'admin');
 

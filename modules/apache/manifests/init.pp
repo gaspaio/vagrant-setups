@@ -53,6 +53,13 @@ class apache {
     require => Package['apache2'],
   }
 
+  # Info directory
+  file { "server_info_dir":
+    path => "/var/www/info",
+    insure => "directory",
+    require => Package['apache2'],
+  }
+
   exec { 'echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn':
     require => Package['apache2'],
   }

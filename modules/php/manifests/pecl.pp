@@ -11,7 +11,6 @@ class php::pecl {
   # Install more recent APC version from PECL
   exec { "pecl_apc":
     command => 'pecl install apc',
-    unless => 'pecl list | grep "apc"',
     require => [Package['php-pear', 'php5-dev', 'libpcre3-dev'], Exec['pear_upgrade']],
   }
 
@@ -31,5 +30,12 @@ class php::pecl {
     owner => 'root',
     group => 'root',
     require => Exec['pecl_xdebug'],
+  }
+
+  file { "apc_php":
+    path => "/var/www/info/apc.php",
+    ensure => present,
+    source => "puppet:///modules/php/apc.php"
+    require => [Package['php5'], File['server_info_dir'], Exec['pecl_apc']],
   }
 }
