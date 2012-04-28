@@ -26,6 +26,9 @@ class php {
   file { "phpinfo":
     path => "/var/www/info/index.php",
     ensure => present,
-    source => "puppet:///modules/php/index.php"
+    source => "puppet:///modules/php/index.php",
     require => [Package['php5'], File['server_info_dir']],
+  }
 }
+
+# TODO install php5-memcached

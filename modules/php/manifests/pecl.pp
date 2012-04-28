@@ -35,7 +35,7 @@ class php::pecl {
   file { "apc_php":
     path => "/var/www/info/apc.php",
     ensure => present,
-    source => "puppet:///modules/php/apc.php"
+    source => "puppet:///modules/php/apc.php",
     require => [Package['php5'], File['server_info_dir'], Exec['pecl_apc']],
   }
 }

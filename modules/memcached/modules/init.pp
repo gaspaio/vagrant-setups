@@ -1,7 +1,9 @@
 class memcached {
-#  $packages = ["memcached", "php5-memcached"]
+  $packages = ["memcached", "libmemcached-tools"]
 
-  package { 'memcached':
+  package { $packages:
     ensure => present,
   }
+
+# TODO download phpmemcachedadmin into /var/www/info
 }

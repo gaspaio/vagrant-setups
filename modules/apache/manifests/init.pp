@@ -56,7 +56,7 @@ class apache {
   # Info directory
   file { "server_info_dir":
     path => "/var/www/info",
-    insure => "directory",
+    ensure => "directory",
     require => Package['apache2'],
   }
 

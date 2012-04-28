@@ -7,6 +7,7 @@ include bootstrap
 include other
 include apache
 include mysql
+#include memcached
 include php
 include php::pear
 include php::pecl
