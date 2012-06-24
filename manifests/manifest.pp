@@ -12,5 +12,11 @@ node 'default' {
     serveradmin        => 'rodolfo@me.org',
     configure_firewall => false,
   }
+
+  # The apache module provides us with a new type: a2mod
+  a2mod { 'rewrite':
+    ensure => "present"
+  }
+
 }
 
