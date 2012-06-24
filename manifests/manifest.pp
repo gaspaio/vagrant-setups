@@ -1,5 +1,3 @@
-
-
 node 'default' {
   $apache_user = 'vagrant'
   $apache_group = 'vagrant'

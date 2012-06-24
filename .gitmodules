@@ -1,3 +1,6 @@
 [submodule "modules/apache"]
 	path = modules/apache
 	url = git@github.com:gaspaio/puppetlabs-apache.git
+[submodule "modules/php"]
+	path = modules/php
+	url = git@github.com:gaspaio/puppet-php.git
