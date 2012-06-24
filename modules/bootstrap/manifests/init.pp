@@ -1,7 +1,18 @@
+# Class: bootstrap
+#
+# This class is run at first to initialize the configuration of the server and
+# before provisionning starts.
+#
+# Parameters:
+#
+# Requires:
+#
+# Sample Usage:
+#
 class bootstrap {
   # this makes puppet and vagrant shut up about the puppet group
-  group { "puppet": 
-    ensure => "present", 
+  group { "puppet":
+    ensure => "present",
   }
 
   # Set FQDN for virtualbox
@@ -16,6 +27,16 @@ class bootstrap {
 
   # because puppet command are not run sequentially, ensure that packages are
   # up to date before installing before installing packages, services, files, etc.
-  Package { require => Exec["apt-get update"] }
-  File { require => Exec["apt-get update"] }
+  Package {
+    require => Exec["apt-get update"]
+  }
+
+  File {
+    require => Exec["apt-get update"]
+  }
+
+  # Base packages
+  Package { 'make':
+    ensure => present,
+  }
 }

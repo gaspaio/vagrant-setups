@@ -5,13 +5,13 @@ class php::pecl {
   exec { 'pecl_xdebug':
     command => "pecl install xdebug",
     unless => 'pecl list | grep "xdebug"',
-    require => [Package['php-pear', 'php5-dev'], Exec['pear_upgrade']],
+    require => [Package['php-pear', 'php5-dev', 'make'], Exec['pear_upgrade']],
   }
 
   # Install more recent APC version from PECL
   exec { "pecl_apc":
     command => 'pecl install apc',
-    require => [Package['php-pear', 'php5-dev', 'libpcre3-dev'], Exec['pear_upgrade']],
+    require => [Package['php-pear', 'php5-dev', 'libpcre3-dev', 'make'], Exec['pear_upgrade']],
   }
 
   file { "apc_ini":

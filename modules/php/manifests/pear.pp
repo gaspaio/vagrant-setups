@@ -12,6 +12,10 @@ class php::pear {
     require => Package['php-pear'],
   }
 
+# -> just in case : pear upgrade PEAR
+# -> installer sudo pear install --alldeps phpqatools/phpqatools
+# + phing + drush +
+
 #  exec { "pear_auto_discover":
 #    command => "pear config-set auto_discover 1",
 #    require => [Package['php-pear'], Exec['pear_upgrade']],

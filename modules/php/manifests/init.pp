@@ -1,5 +1,5 @@
 class php {
-  $packages = ["php5", "php5-cli", "php5-mysql", "php5-dev", "php5-mcrypt", "php5-gd", "libapache2-mod-php5", 'libpcre3-dev']
+  $packages = ["php5", "php5-cli", "php5-mysql", "php5-dev", "php5-mcrypt", "php5-gd", "libapache2-mod-php5", 'libpcre3-dev', 'php5-curl']
 
   package { $packages:
     ensure => present,
@@ -31,4 +31,3 @@ class php {
   }
 }
 
-# TODO install php5-memcached
