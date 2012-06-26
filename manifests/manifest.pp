@@ -15,9 +15,12 @@ node 'default' {
   }
 
   # The apache module provides us with a new type: a2mod
-  a2mod { 'rewrite':
-    ensure => "present"
-  }
+  #a2mod { 'rewrite':
+  #  ensure => "present"
+  #}
+
+  # Ensure CLI with the default params
+  class {'php':}
 
 }
 
