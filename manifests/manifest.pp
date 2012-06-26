@@ -1,8 +1,11 @@
 node 'default' {
-  $apache_user = 'vagrant'
-  $apache_group = 'vagrant'
+  
   include bootstrap
-  include apache
+  
+  class {'apache':
+    httpd_user  => 'vagrant',
+    httpd_group => 'vagrant',
+  }
 
   apache::vhost { 'mysite.test.vt':
     port               => '80',
