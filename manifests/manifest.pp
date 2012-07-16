@@ -24,5 +24,9 @@ node 'default' {
   class {'php::apache2':
     memory_limit => '256M',
   }
+  class {'php::pear':}
+  class {'php::pecl':
+    xdebug_remotehost => '192.168.33.1'
+  }
 }
 
