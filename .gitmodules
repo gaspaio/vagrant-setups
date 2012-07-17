@@ -7,3 +7,6 @@
 [submodule "modules/mysql"]
 	path = modules/mysql
 	url = git@github.com:gaspaio/puppetlabs-mysql.git
+[submodule "modules/dotdeb"]
+	path = modules/dotdeb
+	url = git@github.com:gaspaio/puppet-module-dotdeb.git
