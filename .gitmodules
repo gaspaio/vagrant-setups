@@ -4,3 +4,6 @@
 [submodule "modules/php"]
 	path = modules/php
 	url = git@github.com:gaspaio/puppet-php.git
+[submodule "modules/mysql"]
+	path = modules/mysql
+	url = git@github.com:gaspaio/puppetlabs-mysql.git
