@@ -10,3 +10,6 @@
 [submodule "modules/dotdeb"]
 	path = modules/dotdeb
 	url = git@github.com:gaspaio/puppet-module-dotdeb.git
+[submodule "modules/mercurial"]
+	path = modules/mercurial
+	url = git@github.com:gaspaio/puppet-mercurial.git
