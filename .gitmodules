@@ -13,3 +13,6 @@
 [submodule "modules/mercurial"]
 	path = modules/mercurial
 	url = git@github.com:gaspaio/puppet-mercurial.git
+[submodule "modules/git"]
+	path = modules/git
+	url = git@github.com:gaspaio/puppet-git.git
