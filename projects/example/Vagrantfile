@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+require 'vagrant-ansible'
+
+provision = true
+project_name = "example"
+shared_project_dir = "../../boxfiles/" + project_name
+
+Vagrant::Config.run do |config|
+  config.vm.box = "ubuntu1210-64"
+  config.vm.network :hostonly, "192.168.33.13"
+  config.vm.host_name = project_name + ".vt"
+
+  # Forward a port from the guest to the host, which allows for outside
+  # computers to access the VM, whereas host only networking does not.
+  # config.vm.forward_port 80, 8081
+
+  config.vm.share_folder "v-projects", "/var/projects", shared_project_dir, :nfs => true
+
+  config.vm.customize ["modifyvm", :id, "--name", project_name]
+
+  if provision
+    config.vm.provision :ansible do |ansible|
+      ansible.playbook = "playbook.yml"
+      ansible.hosts = "webservers-lamp-dev"
+#      ansible.options = "-vvv"
+    end
+  end
+end

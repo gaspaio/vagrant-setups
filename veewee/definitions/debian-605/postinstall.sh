@@ -2,29 +2,14 @@ date > /etc/vagrant_box_build_time
 
 # Update the box
 apt-get -y update
+apt-get -y upgrade
 apt-get -y install linux-headers-$(uname -r) build-essential
 apt-get -y install zlib1g-dev libssl-dev libreadline5-dev
-apt-get -y install curl unzip
 apt-get clean
 
 # Set up sudo
 cp /etc/sudoers /etc/sudoers.orig
 sed -i -e 's/%sudo ALL=(ALL) ALL/%sudo ALL=NOPASSWD:ALL/g' /etc/sudoers
-
-# Install Ruby from packages
-apt-get -y install ruby ruby-dev libruby1.8 ri
-
-# Install Rubygems from source
-rg_ver=1.6.2
-curl -o /tmp/rubygems-${rg_ver}.zip \
-  "http://production.cf.rubygems.org/rubygems/rubygems-${rg_ver}.zip"
-(cd /tmp && unzip rubygems-${rg_ver}.zip && \
-  cd rubygems-${rg_ver} && ruby setup.rb --no-format-executable)
-rm -rf /tmp/rubygems-${rg_ver} /tmp/rubygems-${rg_ver}.zip
-
-# Install Chef & Puppet
-gem install chef --no-ri --no-rdoc
-gem install puppet --no-ri --no-rdoc
 
 # Install vagrant keys
 mkdir -p /home/vagrant/.ssh
@@ -34,6 +19,9 @@ curl -Lo /home/vagrant/.ssh/authorized_keys \
   'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
 chmod 0600 /home/vagrant/.ssh/authorized_keys
 chown -R vagrant:vagrant /home/vagrant/.ssh
+
+# Install NFS client
+apt-get -y install nfs-common
 
 # Tweak sshd to prevent DNS resolution (speed up logins)
 echo 'UseDNS no' >> /etc/ssh/sshd_config

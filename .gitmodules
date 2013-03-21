@@ -16,3 +16,6 @@
 [submodule "modules/git"]
 	path = modules/git
 	url = git@github.com:gaspaio/puppet-git.git
+[submodule "ansible-repository"]
+	path = ansible-repository
+	url = git://github.com/gaspaio/ansible-repository.git

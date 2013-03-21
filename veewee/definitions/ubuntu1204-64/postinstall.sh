@@ -21,44 +21,15 @@ sh /mnt/VBoxLinuxAdditions.run
 umount /mnt
 
 rm VBoxGuestAdditions_$VBOX_VERSION.iso
+rm /home/vagrant/VBoxGuestAdditions_$VBOX_VERSION.iso
 
-# Setup sudo to allow no-password sudo for "admin"
-groupadd -r admin
-usermod -a -G admin vagrant
+# Setup sudo to allow no-password sudo for "sudo"
+usermod -a -G sudo vagrant
 cp /etc/sudoers /etc/sudoers.orig
-sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=admin' /etc/sudoers
-sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers
+sed -i -e 's/%sudo   ALL=(ALL:ALL) ALL/%sudo   ALL=(ALL:ALL) NOPASSWD:ALL/' /etc/sudoers
 
 # Install NFS client
 apt-get -y install nfs-common
-
-# Install Ruby from source in /opt so that users of Vagrant
-# can install their own Rubies using packages or however.
-rg_ver=1.8.7-p358
-wget http://ftp.ruby-lang.org/pub/ruby/ruby-${rg_ver}.tar.gz
-tar xvzf ruby-${rg_ver}.tar.gz
-cd ruby-${rg_ver}
-./configure --prefix=/opt/ruby
-make
-make install
-cd ..
-rm -rf ruby-${rg_ver}
-
-# Install RubyGems 1.7.2
-wget http://production.cf.rubygems.org/rubygems/rubygems-1.8.24.tgz
-tar xzf rubygems-1.8.24.tgz
-cd rubygems-1.8.24
-/opt/ruby/bin/ruby setup.rb
-cd ..
-rm -rf rubygems-1.8.24
-
-# Installing chef & Puppet
-/opt/ruby/bin/gem install chef --no-ri --no-rdoc
-/opt/ruby/bin/gem install puppet --no-ri --no-rdoc
-
-# Add /opt/ruby/bin to the global path as the last resort so
-# Ruby, RubyGems, and Chef/Puppet are visible
-echo 'PATH=$PATH:/opt/ruby/bin/'> /etc/profile.d/vagrantruby.sh
 
 # Installing vagrant keys
 mkdir /home/vagrant/.ssh
