@@ -7,12 +7,14 @@ date > /etc/vagrant_box_build_time
 apt-get -y update
 apt-get -y upgrade
 apt-get -y install linux-headers-$(uname -r) build-essential
-apt-get -y install zlib1g-dev libssl-dev libreadline-gplv2-dev libyaml-dev
+apt-get -y install zlib1g-dev libssl-dev libreadline-gplv2-dev
 apt-get clean
 
 # Installing the virtualbox guest additions
 apt-get -y install dkms
 VBOX_VERSION=$(cat /home/vagrant/.vbox_version)
+cd /tmp
+wget http://download.virtualbox.org/virtualbox/$VBOX_VERSION/VBoxGuestAdditions_$VBOX_VERSION.iso
 mount -o loop VBoxGuestAdditions_$VBOX_VERSION.iso /mnt
 sh /mnt/VBoxLinuxAdditions.run
 umount /mnt
@@ -47,7 +49,7 @@ rm -f /EMPTY
 
 # Removing leftover leases and persistent rules
 echo "cleaning up dhcp leases"
-rm /var/lib/dhcp3/*
+rm /var/lib/dhcp/*
 
 # Make sure Udev doesn't block our network
 # http://6.ptmc.org/?p=164

@@ -3,13 +3,13 @@
 
 require 'vagrant-ansible'
 
-provision = true
+provision = false
 project_name = "example"
 shared_project_dir = "../../boxfiles/" + project_name
 
 Vagrant::Config.run do |config|
-  config.vm.box = "ubuntu1210-64"
-  config.vm.network :hostonly, "192.168.33.13"
+  config.vm.box = "ubuntu1204-64"
+  config.vm.network :hostonly, "192.168.33.25"
   config.vm.host_name = project_name + ".vt"
 
   # Forward a port from the guest to the host, which allows for outside
