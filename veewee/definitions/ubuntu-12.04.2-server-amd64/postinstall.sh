@@ -8,7 +8,7 @@ date > /etc/vagrant_box_build_time
 apt-get -y update
 apt-get -y upgrade
 apt-get -y install linux-headers-$(uname -r) build-essential
-apt-get -y install zlib1g-dev libssl-dev libreadline-gplv2-dev
+apt-get -y install zlib1g-dev libssl-dev libreadline-gplv2-dev libyaml-dev
 apt-get clean
 
 # Installing the virtualbox guest additions
@@ -21,13 +21,12 @@ sh /mnt/VBoxLinuxAdditions.run
 umount /mnt
 
 rm VBoxGuestAdditions_$VBOX_VERSION.iso
+rm /home/vagrant/VBoxGuestAdditions_$VBOX_VERSION.iso
 
-# Setup sudo to allow no-password sudo for "admin"
-groupadd -r admin
-usermod -a -G admin vagrant
+# Setup sudo to allow no-password sudo for "sudo"
+usermod -a -G sudo vagrant
 cp /etc/sudoers /etc/sudoers.orig
-sed -i -e '/Defaults\s\+env_reset/a Defaults\texempt_group=admin' /etc/sudoers
-sed -i -e 's/%admin ALL=(ALL) ALL/%admin ALL=NOPASSWD:ALL/g' /etc/sudoers
+sed -i -e 's/%sudo	ALL=(ALL:ALL) ALL/%sudo\tALL=(ALL:ALL) NOPASSWD:ALL/' /etc/sudoers
 
 # Install NFS client
 apt-get -y install nfs-common
@@ -50,7 +49,7 @@ rm -f /EMPTY
 
 # Removing leftover leases and persistent rules
 echo "cleaning up dhcp leases"
-rm /var/lib/dhcp3/*
+rm /var/lib/dhcp/*
 
 # Make sure Udev doesn't block our network
 # http://6.ptmc.org/?p=164
