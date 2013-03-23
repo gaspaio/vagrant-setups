@@ -45,7 +45,7 @@ Vagrant::Config.run do |config|
       ansible.hosts = "lamp-dev"
 
       # If something goes wrong, you'll want Ansible to be more verbose.
-      ansible.options = "-vvv"
+      # ansible.options = "-vvv"
     end
   end
 end
