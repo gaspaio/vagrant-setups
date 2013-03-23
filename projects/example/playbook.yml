@@ -1,20 +1,25 @@
 ---
 # This is an example playbook to configure a base LAMP development machine via Vagrant.
 #
-- hosts: webservers-lamp-dev
+- hosts: lamp-dev
   user: vagrant
   sudo: True
 
   vars:
     repository_basedir: ../../ansible-repository
+
+    # Check each "Part"'s vars/main.yml file, in the ansible-repository directory 
+    # for available configuration options.
     bootstrap_upgrade: True
     apache_flavor: prefork
     apache_root: /var/www
+
+    # You'll surelly want to change this.
     git_username: Some User
     git_usermail: someuser@domain.com
     hg_username: "Some User <someuser@domain.com>"
 
-    # Simplify administration
+    # Simplify administration.
     mysql_root_password: "vagrant"
 
     # Enable remote debugging from host machine.
@@ -31,7 +36,7 @@
     - include: $repository_basedir/apache/tasks/vhost_add.yml create_docroot=True vhost=test.example.vt docroot=test.example.vt
     - include: $repository_basedir/apache/tasks/module_enable.yml module=rewrite
 
-    # Git & Hg always comme in handy in a development machine
+    # Git & Hg are always handy in a development machine
     - include: $repository_basedir/git/tasks/setup.yml
     - include: $repository_basedir/hg/tasks/setup.yml
 
@@ -40,9 +45,9 @@
     - include: $repository_basedir/mysql/tasks/easyaccess.yml user=vagrant
 
     # Install PHP cli & apache, and the usual dev tools: phpunit, composer, xdebug, ...
-    #- include: $repository_basedir/php/tasks/setup.yml
-    #- include: $repository_basedir/php/tasks/apache.yml
-    #- include: $repository_basedir/php/tasks/phpdev.yml
+    - include: $repository_basedir/php/tasks/setup.yml
+    - include: $repository_basedir/php/tasks/apache.yml
+    - include: $repository_basedir/php/tasks/phpdev.yml
 
 
   handlers:

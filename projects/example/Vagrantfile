@@ -3,28 +3,49 @@
 
 require 'vagrant-ansible'
 
-provision = false
+provision = true
 project_name = "example"
-shared_project_dir = "../../boxfiles/" + project_name
 
 Vagrant::Config.run do |config|
+
   config.vm.box = "ubuntu1204-64"
-  config.vm.network :hostonly, "192.168.33.25"
+
   config.vm.host_name = project_name + ".vt"
 
+  # Use NFS shared folders for the main project directory.
+  # @see http://docs-v1.vagrantup.com/v1/docs/nfs.html
+  config.vm.share_folder("v-root", "/vagrant", ".", :nfs => true)
+
+  # Assign this VM to a host-only network IP, allowing you to access it
+  # via the IP. Host-only networks can talk to the host machine as well as
+  # any other machines on the same network, but cannot be accessed (through this
+  # network interface) by any external networks.
+  config.vm.network :hostonly, "192.168.33.25"
+
+ 
+  # Assign this VM to a bridged network, allowing you to connect directly to a
+  # network using the host's network device. This makes the VM appear as another
+  # physical device on your network.
+  # config.vm.network :bridged
+ 
   # Forward a port from the guest to the host, which allows for outside
   # computers to access the VM, whereas host only networking does not.
   # config.vm.forward_port 80, 8081
 
-  config.vm.share_folder "v-projects", "/var/projects", shared_project_dir, :nfs => true
-
+  # Customize the VM 
   config.vm.customize ["modifyvm", :id, "--name", project_name]
 
+  # Provision via ansible
   if provision
     config.vm.provision :ansible do |ansible|
+      # Ansible playbook in project directory
       ansible.playbook = "playbook.yml"
-      ansible.hosts = "webservers-lamp-dev"
-#      ansible.options = "-vvv"
+
+      # The inventory host entry  for this VM
+      ansible.hosts = "lamp-dev"
+
+      # If something goes wrong, you'll want Ansible to be more verbose.
+      ansible.options = "-vvv"
     end
   end
 end
