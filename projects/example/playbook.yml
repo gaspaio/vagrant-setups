@@ -30,6 +30,7 @@
   tasks:
     # Update APT Caches and install base tools
     - include: $repository_basedir/bootstrap/tasks/setup.yml
+    - include: $repository_basedir/bootstrap/tasks/vim.yml user=vagrant
 
     # Install & configure the Apache server
     - include: $repository_basedir/apache/tasks/setup.yml
