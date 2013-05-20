@@ -8,7 +8,7 @@ project_name = "example"
 
 Vagrant::Config.run do |config|
 
-  config.vm.box = "ubuntu1204-64"
+  config.vm.box = "ubuntu1304-64"
 
   config.vm.host_name = project_name + ".vt"
 

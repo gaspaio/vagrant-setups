@@ -25,6 +25,9 @@
     # Enable remote debugging from host machine.
     php_xdebug_remote_enable: 1
     php_xdebug_remote_host: '198.169.33.1'
+
+    # Clone the ansible-repository (for local usage)
+    ansible_repodir: /opt/ansible-repository
     
 
   tasks:
@@ -34,7 +37,6 @@
 
     # Install & configure the Apache server
     - include: $repository_basedir/apache/tasks/setup.yml
-    - include: $repository_basedir/apache/tasks/vhost_add.yml create_docroot=True vhost=test.example.vt docroot=test.example.vt
     - include: $repository_basedir/apache/tasks/module_enable.yml module=rewrite
 
     # Git & Hg are always handy in a development machine
@@ -50,7 +52,11 @@
     - include: $repository_basedir/php/tasks/apache.yml
     - include: $repository_basedir/php/tasks/phpdev.yml
 
+    # Install Ansible (for local usage of playbooks)
+    - include: $repository_basedir/python/tasks/setup.yml
+    - include: $repository_basedir/ansible/tasks/setup.yml
 
   handlers:
     - include: $repository_basedir/apache/handlers/handlers.yml
-    - include: $repository_basedir/mysql/handlers/handlers.yml
+    - include: $repository_basedir/mysql/handlers/handlers.ym
+
