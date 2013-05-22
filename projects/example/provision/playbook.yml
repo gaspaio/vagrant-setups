@@ -1,12 +1,12 @@
 ---
 # This is an example playbook to configure a base LAMP development machine via Vagrant.
 #
-- hosts: lamp-dev
+- hosts: vagrant
   user: vagrant
   sudo: True
 
   vars:
-    repository_basedir: ../../ansible-repository
+    repository_basedir: ../../../ansible-repository
 
     # Check each "Part"'s vars/main.yml file, in the ansible-repository directory 
     # for available configuration options.
