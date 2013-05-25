@@ -58,5 +58,5 @@
 
   handlers:
     - include: $repository_basedir/apache/handlers/handlers.yml
-    - include: $repository_basedir/mysql/handlers/handlers.ym
+    - include: $repository_basedir/mysql/handlers/handlers.yml
 
