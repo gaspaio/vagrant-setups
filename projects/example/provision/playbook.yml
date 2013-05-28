@@ -51,6 +51,7 @@
     - include: $repository_basedir/php/tasks/setup.yml
     - include: $repository_basedir/php/tasks/apache.yml
     - include: $repository_basedir/php/tasks/phpdev.yml
+    - include: $repository_basedir/mysql/tasks/php.yml
 
     # Install Ansible (for local usage of playbooks)
     - include: $repository_basedir/python/tasks/setup.yml
