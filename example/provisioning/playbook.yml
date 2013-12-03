@@ -1,0 +1,8 @@
+---
+- hosts: default
+  sudo: yes
+  roles:
+    - common
+    - git
+    - php
+    - node

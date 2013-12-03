@@ -1,24 +1,3 @@
-[submodule "modules/apache"]
-	path = modules/apache
-	url = git@github.com:gaspaio/puppetlabs-apache.git
-[submodule "modules/php"]
-	path = modules/php
-	url = git@github.com:gaspaio/puppet-php.git
-[submodule "modules/mysql"]
-	path = modules/mysql
-	url = git@github.com:gaspaio/puppetlabs-mysql.git
-[submodule "modules/dotdeb"]
-	path = modules/dotdeb
-	url = git@github.com:gaspaio/puppet-module-dotdeb.git
-[submodule "modules/mercurial"]
-	path = modules/mercurial
-	url = git@github.com:gaspaio/puppet-mercurial.git
-[submodule "modules/git"]
-	path = modules/git
-	url = git@github.com:gaspaio/puppet-git.git
-[submodule "ansible-repository"]
-	path = ansible-repository
-	url = git://github.com/gaspaio/ansible-repository.git
 [submodule "ansible-devbox"]
 	path = ansible-devbox
 	url = https://github.com/gaspaio/ansible-devbox.git
