@@ -8,7 +8,7 @@ PROVISION = false
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
-  config.vm.hostname = "test.vt"
+  config.vm.hostname = "example.vt"
   
   # Every Vagrant virtual environment requires a box to build off of.
   config.vm.box = "ubuntu-precise64"
@@ -29,7 +29,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
 
   if PROVISION
-    config.vm.provision "ansible" do |ansible|
+    config.vm.provision "ansible" do |ansible|  
       ansible.playbook = "provisionning/playbook.yml"
       
       # If something goes wrong, you'll want Ansible to be more verbose.
