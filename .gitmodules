@@ -19,3 +19,6 @@
 [submodule "ansible-repository"]
 	path = ansible-repository
 	url = git://github.com/gaspaio/ansible-repository.git
+[submodule "ansible-devbox"]
+	path = ansible-devbox
+	url = https://github.com/gaspaio/ansible-devbox.git
