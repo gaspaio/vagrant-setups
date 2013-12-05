@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
+VAGRANTFILE_API_VERSION = "2"
+
+PROVISION = false
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  
+  config.vm.hostname = "example.vt"
+  
+  # Every Vagrant virtual environment requires a box to build off of.
+  config.vm.box = "ubuntu-precise64"
+
+  # The url from where the 'config.vm.box' box will be fetched if it
+  # doesn't already exist on the user's system.
+  # config.vm.box_url = "http://domain.com/path/to/above.box"
+
+  # config.vm.synced_folder "../data", "/vagrant_data"
+
+  # Provider-specific configuration so you can fine-tune various
+  # backing providers for Vagrant. These expose provider-specific options.
+  # Example for VirtualBox:
+  #
+  config.vm.provider :lxc do |lxc|
+    lxc.customize 'cgroup.memory.limit_in_bytes', '1024M'
+  end
+
+
+  if PROVISION
+    config.vm.provision "ansible" do |ansible|  
+      ansible.playbook = "provisioning/playbook.yml"
+      
+      # If something goes wrong, you'll want Ansible to be more verbose.
+      ansible.verbose = true
+    end
+  end
+end
