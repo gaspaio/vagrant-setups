@@ -1,0 +1,7 @@
+*/*
+!ansible-devbox/*
+!veewee/*
+
+!example/Vagrantfile*
+!example/data/*
+!example/provisioning
