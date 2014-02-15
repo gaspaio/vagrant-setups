@@ -1,3 +1,6 @@
 [submodule "ansible-devbox"]
 	path = ansible-devbox
 	url = https://github.com/gaspaio/ansible-devbox.git
+[submodule "packer-templates"]
+	path = packer-templates
+	url = https://github.com/gaspaio/packer-templates.git

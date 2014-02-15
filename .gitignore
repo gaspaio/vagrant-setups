@@ -1,7 +1,7 @@
 */*
 !ansible-devbox/*
 !veewee/*
-
+!packer-templates
 !example/Vagrantfile*
 !example/data/*
 !example/provisioning
