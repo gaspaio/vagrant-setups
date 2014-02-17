@@ -1,4 +1,4 @@
-*/*
+*
 !ansible-devbox/*
 !veewee/*
 !packer-templates

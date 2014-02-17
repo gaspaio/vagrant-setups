@@ -1,5 +1,5 @@
 # Vagrant Setups
 
-My setup for working with Vagrant and Ansible.
+My setup for working with Vagrant, Ansible and Packer.
 
 
