@@ -8,7 +8,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.hostname = "example.vt"
   
-  config.vm.box = "ubuntu-saucy64"
+  config.vm.box = "centos-6.5-64"
   # config.vm.box_url = "http://domain.com/path/to/above.box"
 
   config.vm.network :forwarded_port, guest: 80, host: 8080
@@ -31,8 +31,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
       # vb.gui = true
   
       # Use VBoxManage to customize the VM. For example to change memory:
-      vb.customize ["modifyvm", :id, "--memory", "2024"]
-      vb.customize ["modifyvm", :id, "--cpus", "2"]
+      # vb.customize ["modifyvm", :id, "--memory", "2024"]
+      # vb.customize ["modifyvm", :id, "--cpus", "2"]
   end
 
   config.vm.provision "ansible" do |ansible|  

@@ -4,8 +4,6 @@
 # Vagrantfile API/syntax version. Don't touch unless you know what you're doing!
 VAGRANTFILE_API_VERSION = "2"
 
-PROVISION = false
-
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   
   config.vm.hostname = "example.vt"
@@ -28,12 +26,10 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   end
 
 
-  if PROVISION
-    config.vm.provision "ansible" do |ansible|  
-      ansible.playbook = "provisioning/playbook.yml"
+  config.vm.provision "ansible" do |ansible|  
+    ansible.playbook = "provisioning/playbook.yml"
       
-      # If something goes wrong, you'll want Ansible to be more verbose.
-      ansible.verbose = true
-    end
+    # If something goes wrong, you'll want Ansible to be more verbose.
+    ansible.verbose = true
   end
 end
